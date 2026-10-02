@@ -1,6 +1,4 @@
-# Compagnon de wargame
-
-## Beware Attention ALPHA VERSION
+# Compagnon de wargame ALPHA VERSION
 
 **[English](#english) · [Français](#français)**
 
