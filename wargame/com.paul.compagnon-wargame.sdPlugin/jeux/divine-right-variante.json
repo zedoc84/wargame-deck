@@ -1,0 +1,63 @@
+{
+	"id": "divine-right-variante",
+	"nom": "Divine Right — variante maison",
+	"abrege": "Divine Right",
+	"_aide": "Squelette à compléter : renomme les camps, ajuste la séquence et remplace les seuils et l'événement d'exemple par les valeurs de ta variante. Les champs qui commencent par _ sont ignorés.",
+	"camps": [
+		{ "nom": "Joueur 1" },
+		{ "nom": "Joueur 2" },
+		{ "nom": "Joueur 3" },
+		{ "nom": "Joueur 4" }
+	],
+	"ordreCamps": "aleatoire",
+	"sequence": {
+		"debut": [
+			{ "nom": "Début de tour", "abrege": "Début", "rappels": ["Ordre de jeu tiré au sort (voir le journal)", "Tirer l'événement du tour"] }
+		],
+		"parCamp": [
+			{ "nom": "Économie", "rappels": ["Encaisser les revenus des territoires contrôlés", "Payer l'entretien des troupes", "Recruter"] },
+			{ "nom": "Diplomatie", "rappels": ["Émissaires vers les royaumes non joueurs", "Contribution fixe des alliés non joueurs"] },
+			{ "nom": "Mouvement", "rappels": ["Les zones de contrôle arrêtent le mouvement"] },
+			{ "nom": "Batailles et sièges", "abrege": "Batailles", "rappels": ["Une poignée de d6 : un dé par unité", "Seuil selon la race et le type d'unité", "Rounds jusqu'à retraite ou destruction"] }
+		],
+		"fin": [
+			{ "nom": "Fin de tour", "rappels": ["Succession des monarques tombés", "Vérifier si la partie s'arrête (durée variable)"] }
+		]
+	},
+	"tables": {
+		"bataille": {
+			"type": "poignee",
+			"nom": "Bataille",
+			"faces": 6,
+			"des": 6,
+			"desMax": 40,
+			"seuil": 4,
+			"camps": ["Attaquant", "Défenseur"],
+			"profils": [],
+			"_profils_format": [{ "nom": "Exemple de race ou type", "seuil": 4 }]
+		},
+		"siege": {
+			"type": "poignee",
+			"nom": "Siège",
+			"faces": 6,
+			"des": 4,
+			"desMax": 40,
+			"seuil": 5,
+			"camps": ["Assiégeant", "Garnison"]
+		},
+		"evenements": {
+			"type": "aleatoire",
+			"nom": "Événement",
+			"de": "1d6",
+			"entrees": {
+				"1": "Événement 1, à remplir",
+				"2": "Événement 2, à remplir",
+				"3": "Événement 3, à remplir",
+				"4": "Événement 4, à remplir",
+				"5": "Événement 5, à remplir",
+				"6": "Événement 6, à remplir"
+			}
+		}
+	},
+	"des": ["1d6", "2d6"]
+}

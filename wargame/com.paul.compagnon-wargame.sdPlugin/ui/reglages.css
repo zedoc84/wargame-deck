@@ -1,0 +1,240 @@
+/*
+ * Réglages du Compagnon de wargame.
+ * Ils vivent dans le panneau sombre de l'application Stream Deck : on reprend sa grille
+ * (libellé à gauche, contrôle à droite) et sa taille de texte, avec l'accent laiton des touches.
+ */
+:root {
+	--fond: #2d2d2d;
+	--champ: #3d3d3d;
+	--champ-survol: #464646;
+	--texte: #d8d8d8;
+	--secondaire: #9a9a9a;
+	--filet: #444;
+	--laiton: #d3a93f;
+	--laiton-clair: #e2bd5c;
+	--sur-laiton: #1d1a12;
+	--erreur: #e0806b;
+	--libelle: 96px;
+	--espace: 10px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	background: var(--fond);
+	color: var(--texte);
+	font: 12px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+main {
+	padding: 12px 14px 18px;
+}
+
+section + section,
+section + .aide,
+.aide + section {
+	margin-top: 14px;
+}
+
+#specifique:empty {
+	display: none;
+}
+
+/* ── Lignes libellé + contrôle ── */
+
+.ligne {
+	display: grid;
+	grid-template-columns: var(--libelle) 1fr;
+	align-items: center;
+	gap: var(--espace);
+	min-height: 28px;
+}
+
+.ligne + .ligne {
+	margin-top: 6px;
+}
+
+label,
+.libelle {
+	color: var(--secondaire);
+	text-align: right;
+}
+
+select,
+input[type="text"] {
+	width: 100%;
+	height: 26px;
+	padding: 0 8px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	background: var(--champ);
+	color: var(--texte);
+	font: inherit;
+}
+
+select:hover,
+input[type="text"]:hover {
+	background: var(--champ-survol);
+}
+
+select:focus-visible,
+input:focus-visible,
+button:focus-visible {
+	outline: 2px solid var(--laiton);
+	outline-offset: 1px;
+}
+
+input.invalide {
+	border-color: var(--erreur);
+}
+
+.note {
+	grid-column: 2;
+	margin: 2px 0 0;
+	color: var(--secondaire);
+	font-size: 11px;
+}
+
+.note.erreur {
+	color: var(--erreur);
+}
+
+/* ── Jeu en cours : le seul bloc mis en avant ── */
+
+.jeu {
+	padding-bottom: 12px;
+	border-bottom: 1px solid var(--filet);
+}
+
+.statut {
+	margin: 4px 0 0 calc(var(--libelle) + var(--espace));
+	color: var(--laiton);
+	font-variant-numeric: tabular-nums;
+}
+
+.changement {
+	margin: 8px 0 0 calc(var(--libelle) + var(--espace));
+}
+
+.changement p {
+	margin: 0 0 6px;
+	color: var(--secondaire);
+}
+
+/* ── Boutons ── */
+
+button {
+	height: 26px;
+	padding: 0 12px;
+	border: 1px solid var(--filet);
+	border-radius: 3px;
+	background: var(--champ);
+	color: var(--texte);
+	font: inherit;
+	cursor: pointer;
+}
+
+button:hover {
+	background: var(--champ-survol);
+}
+
+button.principal {
+	border-color: var(--laiton);
+	background: var(--laiton);
+	color: var(--sur-laiton);
+	font-weight: 600;
+}
+
+button.principal:hover {
+	background: var(--laiton-clair);
+}
+
+button.danger {
+	border-color: var(--erreur);
+	color: var(--erreur);
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-left: calc(var(--libelle) + var(--espace));
+}
+
+.actions + .actions {
+	margin-top: 6px;
+}
+
+/* Interrupteur plus / moins */
+.segments {
+	display: inline-flex;
+	border: 1px solid var(--filet);
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.segments button {
+	min-width: 64px;
+	border: 0;
+	border-radius: 0;
+}
+
+.segments button + button {
+	border-left: 1px solid var(--filet);
+}
+
+.segments button[aria-pressed="true"] {
+	background: var(--laiton);
+	color: var(--sur-laiton);
+	font-weight: 600;
+}
+
+/* ── Aide et erreurs ── */
+
+.aide {
+	margin: 14px 0 0;
+	padding-top: 12px;
+	border-top: 1px solid var(--filet);
+	color: var(--secondaire);
+	max-width: 62ch;
+}
+
+.dossier {
+	margin: 10px 0 0 calc(var(--libelle) + var(--espace));
+	color: var(--secondaire);
+	font-size: 11px;
+	word-break: break-all;
+}
+
+.erreurs h2 {
+	margin: 0 0 6px;
+	color: var(--erreur);
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.erreurs ul {
+	margin: 0;
+	padding-left: 16px;
+}
+
+.erreurs li + li {
+	margin-top: 4px;
+}
+
+.erreurs strong {
+	color: var(--texte);
+	font-weight: 600;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	button,
+	select,
+	input {
+		transition: background-color 120ms ease;
+	}
+}

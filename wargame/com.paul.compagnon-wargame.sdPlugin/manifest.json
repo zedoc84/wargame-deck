@@ -1,0 +1,208 @@
+{
+	"$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+	"Name": "Compagnon de wargame",
+	"Version": "1.0.0.0",
+	"Author": "Paul",
+	"Description": "Assistant de partie pour wargames et jeux de plateau physiques : séquence de tour, rappels, tables de combat, poignées de dés, tables aléatoires et journal de partie. Chaque jeu est décrit dans un fichier JSON.",
+	"Category": "Compagnon de wargame",
+	"CategoryIcon": "imgs/plugin/categorie",
+	"Icon": "imgs/plugin/icone",
+	"CodePath": "bin/plugin.js",
+	"SDKVersion": 3,
+	"Software": {
+		"MinimumVersion": "7.1"
+	},
+	"OS": [
+		{
+			"Platform": "mac",
+			"MinimumVersion": "12"
+		},
+		{
+			"Platform": "windows",
+			"MinimumVersion": "10"
+		}
+	],
+	"Nodejs": {
+		"Version": "24",
+		"Debug": "disabled"
+	},
+	"UUID": "com.paul.compagnon-wargame",
+	"Actions": [
+		{
+			"Name": "Partie",
+			"UUID": "com.paul.compagnon-wargame.partie",
+			"Icon": "imgs/actions/partie/icone",
+			"Tooltip": "Jeu en cours et journal. Appui : ouvrir le journal. Appui long (1,5 s) : nouvelle partie.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/partie/touche",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Séquence de tour",
+			"UUID": "com.paul.compagnon-wargame.sequence",
+			"Icon": "imgs/actions/sequence/icone",
+			"Tooltip": "Tour et phase en cours. Appui : phase suivante. Appui long : phase précédente.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad",
+				"Encoder"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/sequence/touche",
+					"ShowTitle": false
+				}
+			],
+			"Encoder": {
+				"layout": "layouts/ecran.json",
+				"TriggerDescription": {
+					"Rotate": "Phase précédente / suivante",
+					"Push": "Phase suivante",
+					"Touch": "Phase suivante",
+					"LongTouch": "Phase précédente"
+				}
+			}
+		},
+		{
+			"Name": "Rappels de phase",
+			"UUID": "com.paul.compagnon-wargame.rappels",
+			"Icon": "imgs/actions/rappels/icone",
+			"Tooltip": "Les étapes à ne pas oublier dans la phase en cours. Appui : rappel suivant. Appui long : revenir au début.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/rappels/touche",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Table de combat",
+			"UUID": "com.paul.compagnon-wargame.combat",
+			"Icon": "imgs/actions/combat/icone",
+			"Tooltip": "Table de résultats à colonnes (rapport de forces). Appui : lancer. Appui long : colonne suivante.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad",
+				"Encoder"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/combat/touche",
+					"ShowTitle": false
+				}
+			],
+			"Encoder": {
+				"layout": "layouts/ecran.json",
+				"TriggerDescription": {
+					"Rotate": "Colonne (appuyé : modificateur)",
+					"Push": "Lancer",
+					"Touch": "Lancer",
+					"LongTouch": "Modificateur à zéro"
+				}
+			}
+		},
+		{
+			"Name": "Bataille (poignée de dés)",
+			"UUID": "com.paul.compagnon-wargame.bataille",
+			"Icon": "imgs/actions/bataille/icone",
+			"Tooltip": "Un dé par unité, touche à X+, en plusieurs rounds. Appui : lancer. Appui long : nouvelle bataille.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad",
+				"Encoder"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/bataille/touche",
+					"ShowTitle": false
+				}
+			],
+			"Encoder": {
+				"layout": "layouts/ecran.json",
+				"TriggerDescription": {
+					"Rotate": "Nombre de dés (appuyé : seuil)",
+					"Push": "Lancer",
+					"Touch": "Lancer",
+					"LongTouch": "Nouvelle bataille"
+				}
+			}
+		},
+		{
+			"Name": "Ajuster (+/−)",
+			"UUID": "com.paul.compagnon-wargame.ajuster",
+			"Icon": "imgs/actions/ajuster/icone",
+			"Tooltip": "Plus ou moins sur une colonne, un modificateur, un nombre de dés ou un seuil. Appui long : valeur par défaut.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/ajuster/touche",
+					"ShowTitle": false
+				}
+			]
+		},
+		{
+			"Name": "Table aléatoire",
+			"UUID": "com.paul.compagnon-wargame.aleatoire",
+			"Icon": "imgs/actions/aleatoire/icone",
+			"Tooltip": "Événements, météo, rencontres… Appui : tirer. Appui long : effacer.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad",
+				"Encoder"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/aleatoire/touche",
+					"ShowTitle": false
+				}
+			],
+			"Encoder": {
+				"layout": "layouts/ecran.json",
+				"TriggerDescription": {
+					"Rotate": "Changer de table",
+					"Push": "Tirer",
+					"Touch": "Tirer",
+					"LongTouch": "Effacer"
+				}
+			}
+		},
+		{
+			"Name": "Dés",
+			"UUID": "com.paul.compagnon-wargame.des",
+			"Icon": "imgs/actions/des/icone",
+			"Tooltip": "Lance une expression libre : 2d6, d20, 3d6+1… Appui : lancer. Appui long : effacer.",
+			"PropertyInspectorPath": "ui/reglages.html",
+			"SupportedInMultiActions": false,
+			"Controllers": [
+				"Keypad"
+			],
+			"States": [
+				{
+					"Image": "imgs/actions/des/touche",
+					"ShowTitle": false
+				}
+			]
+		}
+	]
+}

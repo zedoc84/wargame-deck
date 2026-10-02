@@ -1,0 +1,54 @@
+{
+	"id": "mon-jeu",
+	"nom": "Nom complet du jeu",
+	"abrege": "Nom court",
+	"tours": 12,
+	"camps": [
+		{ "nom": "Camp A", "couleur": "#3F6FA8" },
+		{ "nom": "Camp B", "couleur": "#B5473A" }
+	],
+	"ordreCamps": "fixe",
+	"sequence": {
+		"debut": [{ "nom": "Phase commune de début", "abrege": "Début", "rappels": ["Premier rappel", "Deuxième rappel"] }],
+		"parCamp": ["Mouvement", "Combat"],
+		"fin": ["Fin de tour"]
+	},
+	"tables": {
+		"combat": {
+			"type": "colonnes",
+			"nom": "Combat",
+			"de": "1d6",
+			"colonnes": ["1:1", "2:1", "3:1"],
+			"colonneDefaut": 0,
+			"modificateur": { "min": -2, "max": 2 },
+			"lignes": {
+				"1-": ["AR", "AR", "DR"],
+				"2-4": ["EX", "DR", "DR"],
+				"5+": ["DR", "DE", "DE"]
+			},
+			"resultats": {
+				"AR": { "texte": "Attaquant recule", "couleur": "#C77D3A" },
+				"EX": "Échange",
+				"DR": { "texte": "Défenseur recule", "couleur": "#6E9A78" },
+				"DE": { "texte": "Défenseur éliminé", "couleur": "#2F6B47" }
+			}
+		},
+		"melee": {
+			"type": "poignee",
+			"nom": "Mêlée",
+			"faces": 6,
+			"des": 5,
+			"desMax": 30,
+			"seuil": 4,
+			"critique": 6,
+			"camps": ["Attaquant", "Défenseur"],
+			"profils": [{ "nom": "Vétérans", "seuil": 3 }]
+		},
+		"rencontres": {
+			"type": "aleatoire",
+			"nom": "Rencontres",
+			"entrees": ["Rien", "Patrouille", { "texte": "Embuscade : l'adversaire agit en premier", "court": "Embuscade" }]
+		}
+	},
+	"des": ["2d6", "1d20"]
+}

@@ -1,0 +1,89 @@
+{
+	"id": "exemple-wargame",
+	"nom": "Wargame classique (exemple)",
+	"abrege": "Exemple",
+	"tours": 10,
+	"camps": [
+		{ "nom": "Bleu", "couleur": "#3F6FA8" },
+		{ "nom": "Rouge", "couleur": "#B5473A" }
+	],
+	"ordreCamps": "fixe",
+	"sequence": {
+		"debut": [
+			{ "nom": "Météo", "rappels": ["Tirer la météo du tour"] }
+		],
+		"parCamp": [
+			{ "nom": "Renforts", "rappels": ["Placer les renforts prévus ce tour", "Vérifier le ravitaillement"] },
+			{ "nom": "Mouvement", "rappels": ["Les zones de contrôle arrêtent le mouvement", "Appliquer la météo"] },
+			{ "nom": "Combat", "rappels": ["Déclarer toutes les attaques avant de lancer", "Ajouter les modificateurs de terrain"] }
+		],
+		"fin": [
+			{ "nom": "Fin de tour", "rappels": ["Avancer le marqueur de tour", "Vérifier les conditions de victoire"] }
+		]
+	},
+	"tables": {
+		"combat": {
+			"type": "colonnes",
+			"nom": "Combat",
+			"de": "1d6",
+			"colonnes": ["1:3", "1:2", "1:1", "2:1", "3:1", "4:1", "5:1", "6:1"],
+			"colonneDefaut": 2,
+			"modificateur": { "min": -3, "max": 3 },
+			"lignes": {
+				"1-": ["AE", "AE", "AE", "AR", "AR", "DR", "DR", "EX"],
+				"2":  ["AE", "AE", "AR", "AR", "DR", "DR", "EX", "DE"],
+				"3":  ["AE", "AR", "AR", "DR", "DR", "EX", "DE", "DE"],
+				"4":  ["AR", "AR", "DR", "DR", "EX", "DE", "DE", "DE"],
+				"5":  ["AR", "DR", "DR", "EX", "DE", "DE", "DE", "DE"],
+				"6+": ["DR", "DR", "EX", "DE", "DE", "DE", "DE", "DE"]
+			},
+			"resultats": {
+				"AE": { "texte": "Attaquant éliminé", "couleur": "#8E2F25" },
+				"AR": { "texte": "Attaquant recule", "couleur": "#C77D3A" },
+				"EX": { "texte": "Échange de pertes", "couleur": "#9A8F7A" },
+				"DR": { "texte": "Défenseur recule", "couleur": "#6E9A78" },
+				"DE": { "texte": "Défenseur éliminé", "couleur": "#2F6B47" }
+			}
+		},
+		"assaut": {
+			"type": "poignee",
+			"nom": "Assaut",
+			"faces": 6,
+			"des": 6,
+			"desMax": 30,
+			"seuil": 5,
+			"critique": 6,
+			"camps": ["Attaquant", "Défenseur"],
+			"profils": [
+				{ "nom": "Élite", "seuil": 4 },
+				{ "nom": "Recrues", "seuil": 6 }
+			]
+		},
+		"meteo": {
+			"type": "aleatoire",
+			"nom": "Météo",
+			"de": "1d6",
+			"entrees": {
+				"1-2": "Beau temps",
+				"3-4": { "texte": "Couvert : visibilité réduite à 3 hexagones", "court": "Couvert" },
+				"5": { "texte": "Pluie : mouvement −1 pour toutes les unités", "court": "Pluie, mouvement −1" },
+				"6": { "texte": "Tempête : mouvement divisé par deux, pas d'appui aérien", "court": "Tempête" }
+			}
+		},
+		"evenements": {
+			"type": "aleatoire",
+			"nom": "Événement",
+			"de": "2d6",
+			"entrees": {
+				"2": "Désertion : retirer une unité au choix de l'adversaire",
+				"3-4": "Convoi intercepté : pas de renforts ce tour",
+				"5-6": "Rien à signaler",
+				"7": "Rien à signaler",
+				"8-9": "Éclaireurs : révéler une unité ennemie",
+				"10-11": "Renfort inattendu : +1 unité",
+				"12": "Coup d'éclat : +1 à un combat ce tour"
+			}
+		}
+	},
+	"des": ["2d6", "1d6", "1d10"]
+}

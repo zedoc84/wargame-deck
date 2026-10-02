@@ -1,0 +1,33 @@
+{
+  "name": "compagnon-wargame",
+  "version": "1.0.0",
+  "description": "Plugin Stream Deck : compagnon de partie pour wargames et jeux de plateau physiques",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w --watch.onEnd=\"streamdeck restart com.paul.compagnon-wargame\"",
+    "test": "tsc -p tsconfig.tests.json && node scripts/tests.mjs",
+    "integration": "rollup -c && node scripts/faux-streamdeck.mjs",
+    "apercu": "tsc -p tsconfig.tests.json && node scripts/apercu.mjs",
+    "icones": "node scripts/icones.mjs",
+    "pack": "rollup -c && streamdeck validate com.paul.compagnon-wargame.sdPlugin && streamdeck pack com.paul.compagnon-wargame.sdPlugin --output dist --force"
+  },
+  "dependencies": {
+    "@elgato/streamdeck": "^3.0.1"
+  },
+  "devDependencies": {
+    "@elgato/cli": "^1.10.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@tsconfig/node20": "^20.1.6",
+    "@types/node": "^24.19.0",
+    "rollup": "^4.63.6",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.0",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<title>Compagnon de wargame</title>
+	<link rel="stylesheet" href="reglages.css" />
+</head>
+<body>
+	<main id="app">
+		<section class="jeu" aria-label="Jeu en cours">
+			<div class="ligne">
+				<label for="jeu">Jeu</label>
+				<select id="jeu"></select>
+			</div>
+			<p class="statut" id="statut">Connexion au plugin…</p>
+			<div class="changement" id="changement" hidden>
+				<p>La partie en cours sera close et son journal conservé.</p>
+				<button type="button" class="principal" id="changer">Changer de jeu</button>
+			</div>
+		</section>
+
+		<section id="specifique"></section>
+
+		<p class="aide" id="aide"></p>
+
+		<section class="erreurs" id="erreurs" hidden>
+			<h2>Fichiers de jeu à corriger</h2>
+			<ul id="liste-erreurs"></ul>
+		</section>
+	</main>
+	<script src="reglages.js"></script>
+</body>
+</html>
