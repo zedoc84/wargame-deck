@@ -1,5 +1,7 @@
 # Compagnon de wargame
 
+## Beware Attention ALPHA VERSION
+
 **[English](#english) · [Français](#français)**
 
 A Stream Deck plugin that runs the bookkeeping of a tabletop wargame played on a real table.
